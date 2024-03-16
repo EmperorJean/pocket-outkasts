@@ -15,8 +15,8 @@ Pocket Outkasts is an Android app designed for the community of Outkast holders.
 To get started with Pocket Outkasts, follow these simple steps:
 
 1. Download the app from the Google Play Store.
-2. Log in with your Outkast account.
-3. Start exploring your Outkasts, missions, and lore!
+2. Fetch your Outkasts with your public ethereum address.
+3. Stay updated with your Outkasts, missions, and lore!
 
 ## Contributing
 
@@ -25,3 +25,5 @@ We welcome contributions to Pocket Outkasts! If you have ideas for new features 
 ## License
 
 Pocket Outkasts is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+\* currently pending review from google, so not yet available on the playstore
