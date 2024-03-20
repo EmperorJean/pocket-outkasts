@@ -51,7 +51,7 @@ const LoginScreen = ({ navigation }) => {
         <View style={CommonStyles.container}>
             <Text style={CommonStyles.header}>Summary</Text>
             <View style={styles.summary}>
-                <Text style={styles.summaryText}>Floor price: {summarySet.total.floor_price} {summarySet.total.floor_price_symbol}</Text>
+                <Text style={styles.summaryText}>Floor price: {summarySet.total.floor_price.toFixed(3)} {summarySet.total.floor_price_symbol}</Text>
                 <Text style={styles.summaryText}>Owners: {summarySet.total.num_owners}</Text>
                 <Text style={styles.summaryText}>1 day sales: {summarySet.intervals[0].sales} | avg price: {summarySet.intervals[0].average_price.toFixed(3)} ETH</Text>
                 <Text style={styles.summaryText}>7 day sales: {summarySet.intervals[1].sales} | avg price: {summarySet.intervals[1].average_price.toFixed(3)} ETH</Text>

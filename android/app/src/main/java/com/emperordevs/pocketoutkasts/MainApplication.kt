@@ -1,4 +1,4 @@
-package com.outkastpocket
+package com.emperordevs.pocketoutkasts
 
 import android.app.Application
 import com.facebook.react.PackageList
