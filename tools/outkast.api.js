@@ -13,7 +13,6 @@ const isCacheValid = async (cacheKey) => {
 
 const getCache = async (cacheKey) => {
     var cacheData = await AsyncStorage.getItem(CACHE_KEY_PREFIX + cacheKey);
-    console.log(cacheData.timestamp)
     return cacheData ? await JSON.parse(cacheData).data : null;
 };
 
