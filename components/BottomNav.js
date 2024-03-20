@@ -1,6 +1,7 @@
 import React from 'react'
 import MissionsScreen from '../screens/missions.screens';
 import OutkastsScreen from '../screens/outkasts.screens';
+import LoginScreen from '../screens/login.screens';
 import HomeScreen from '../screens/home.screens';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -40,8 +41,18 @@ const BottomNav = () => {
                 }}
             />
             <Tab.Screen
-                name="Login"
+                name="Stats"
                 component={HomeScreen}
+                options={{
+                    tabBarLabel: 'Stats',
+                    tabBarIcon: ({ color }) => (
+                        <MaterialIcons name="auto-graph" color={color} size={26} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Login"
+                component={LoginScreen}
                 options={{
                     tabBarLabel: 'Login',
                     tabBarIcon: ({ color }) => (
@@ -49,6 +60,16 @@ const BottomNav = () => {
                     ),
                 }}
             />
+            {/* <Tab.Screen
+                name="Settings"
+                component={MissionsScreen}
+                options={{
+                    tabBarLabel: 'Settings',
+                    tabBarIcon: ({ color }) => (
+                        <MaterialIcons name="settings" color={color} size={26} />
+                    ),
+                }}
+            /> */}
         </Tab.Navigator>
     )
 }

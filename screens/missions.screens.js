@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { fetchInProgressMissions } from '../tools/outkast.api';
 import { NordTheme } from '../components/theme';
+import { CommonStyles } from '../styles/common.styles';
 
 const MissionsScreen = () => {
   const [missions, setMissions] = useState([]);
@@ -9,21 +10,24 @@ const MissionsScreen = () => {
   useEffect(() => {
     const fetchMissions = async () => {
       const inProgressMissions = await fetchInProgressMissions();
-      setMissions(inProgressMissions);
+      setMissions(inProgressMissions.reverse());
     };
     fetchMissions();
   }, []);
 
   return (
-    <ScrollView style={styles.container}>
-      {missions.map((mission, index) => (
-        <View key={index} style={styles.missionItem}>
-          <Text style={styles.missionName}>{mission.name}</Text>
-          <CountdownTimer endTime={mission.end} />
-          <Text style={styles.missionDescription}>{mission.description}</Text>
-        </View>
-      ))}
-    </ScrollView>
+    <View style={CommonStyles.container}>
+      <Text style={CommonStyles.header}>Active Missions</Text>
+      <ScrollView>
+        {missions.map((mission, index) => (
+          <View key={index} style={styles.missionItem}>
+            <Text style={styles.missionName}>{mission.name}</Text>
+            <CountdownTimer endTime={mission.end} />
+            <Text style={styles.missionDescription}>{mission.description}</Text>
+          </View>
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 

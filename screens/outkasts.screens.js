@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, ScrollView, Button } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NordTheme } from '../components/theme';
 import { useFocusEffect } from '@react-navigation/native';
+import { CommonStyles } from '../styles/common.styles';
 
 const OutkastsScreen = ({ navigation }) => {
   const [outkastsData, setOutkastsData] = useState(null);
@@ -22,7 +23,7 @@ const OutkastsScreen = ({ navigation }) => {
 
   if (!outkastsData) {
     return (
-      <View style={styles.containerNo}>
+      <View style={[CommonStyles.container, { alignItems: 'center', justifyContent: 'center' }]}>
         <Text style={[styles.infoText, { marginBottom: 15 }]}>No Outkast data found. Please go to the Login screen to fetch your Outkasts.</Text>
         <Button
           title="Go to Login"
@@ -33,34 +34,39 @@ const OutkastsScreen = ({ navigation }) => {
     );
   }
 
+  if (outkastsData.length === 0) {
+    return (
+      <View style={[CommonStyles.container, { alignItems: 'center', justifyContent: 'center' }]}>
+        <Text style={[styles.infoText, { marginBottom: 15 }]}>No Outkasts found. Please use a wallet that holds at least one outkast.</Text>
+        <Button
+          title="Go to Login"
+          onPress={() => navigation.navigate('Login')} // Make sure the route name matches your Login screen route
+          color={NordTheme.primary}
+        />
+      </View>
+    );
+  }
+
   return (
-    <ScrollView style={styles.container}>
-      {outkastsData && outkastsData.map((item, index) => (
-        <View key={index} style={styles.outkastItem}>
-          <Image source={{ uri: `https://mnnt.io/collections/outkasts/low_res/${item.token_id}` }} style={styles.image} />
-          <View style={styles.info}>
-            <Text style={styles.infoText}>Name: {item.name}</Text>
-            <Text style={styles.infoText}>Level: {item.level}</Text>
-            <Text style={item.deployed_to ? styles.infoTextD : styles.infoTextND}>Status: {item.deployed_to ? `Deployed` : 'Not Deployed'}</Text>
+    <View style={CommonStyles.container}>
+      <Text style={CommonStyles.header}>My Outkasts</Text>
+      <ScrollView>
+        {outkastsData && outkastsData.map((item, index) => (
+          <View key={index} style={styles.outkastItem}>
+            <Image source={{ uri: `https://mnnt.io/collections/outkasts/low_res/${item.token_id}` }} style={styles.image} />
+            <View style={styles.info}>
+              <Text style={styles.infoText}>Name: {item.name}</Text>
+              <Text style={styles.infoText}>Level: {item.level}</Text>
+              <Text style={item.deployed_to ? styles.infoTextD : styles.infoTextND}>Status: {item.deployed_to ? `Deployed` : 'Not Deployed'}</Text>
+            </View>
           </View>
-        </View>
-      ))}
-    </ScrollView>
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: NordTheme.background,
-  },
-  containerNo: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-    backgroundColor: NordTheme.background,
-  },
   outkastItem: {
     flexDirection: 'row',
     alignItems: 'center',
