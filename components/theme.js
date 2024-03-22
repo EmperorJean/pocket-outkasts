@@ -6,5 +6,6 @@ export const NordTheme = {
     highlight: '#BF616A',
     text: '#ECEFF4',
     container: '#3B4252',
+    textGreyed: '#b5b5b5'
   };
   

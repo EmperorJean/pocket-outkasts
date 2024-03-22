@@ -2,6 +2,7 @@ import React from 'react'
 import MissionsScreen from '../screens/missions.screens';
 import OutkastsScreen from '../screens/outkasts.screens';
 import LoginScreen from '../screens/login.screens';
+import StatsScreen from '../screens/stats.screens';
 import HomeScreen from '../screens/home.screens';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -12,7 +13,7 @@ const Tab = createBottomTabNavigator();
 const BottomNav = () => {
     return (
         <Tab.Navigator
-            initialRouteName="My Outkasts"
+            initialRouteName="Home"
             screenOptions={{
                 tabBarActiveTintColor: NordTheme.primary,
                 tabBarInactiveTintColor: NordTheme.text,
@@ -41,8 +42,18 @@ const BottomNav = () => {
                 }}
             />
             <Tab.Screen
-                name="Stats"
+                name="Home"
                 component={HomeScreen}
+                options={{
+                    tabBarLabel: 'Home',
+                    tabBarIcon: ({ color }) => (
+                        <MaterialIcons name="home" color={color} size={26} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Stats"
+                component={StatsScreen}
                 options={{
                     tabBarLabel: 'Stats',
                     tabBarIcon: ({ color }) => (
@@ -60,16 +71,6 @@ const BottomNav = () => {
                     ),
                 }}
             />
-            {/* <Tab.Screen
-                name="Settings"
-                component={MissionsScreen}
-                options={{
-                    tabBarLabel: 'Settings',
-                    tabBarIcon: ({ color }) => (
-                        <MaterialIcons name="settings" color={color} size={26} />
-                    ),
-                }}
-            /> */}
         </Tab.Navigator>
     )
 }

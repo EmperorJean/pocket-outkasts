@@ -50,13 +50,13 @@ const OutkastsScreen = ({ navigation }) => {
   return (
     <View style={CommonStyles.container}>
       <Text style={CommonStyles.header}>My Outkasts</Text>
-      <ScrollView>
+      <ScrollView style={{backgroundColor: NordTheme.container, borderRadius: 20}}>
         {outkastsData && outkastsData.map((item, index) => (
           <View key={index} style={styles.outkastItem}>
             <Image source={{ uri: `https://mnnt.io/collections/outkasts/low_res/${item.token_id}` }} style={styles.image} />
             <View style={styles.info}>
-              <Text style={styles.infoText}>Name: {item.name}</Text>
-              <Text style={styles.infoText}>Level: {item.level}</Text>
+              <Text style={[styles.infoText, {fontWeight: 'bold', fontSize: 18}]}>{item.name}</Text>
+              <Text style={[styles.infoText, {fontSize: 14, color: NordTheme.textGreyed}]}>Level {item.level}</Text>
               <Text style={item.deployed_to ? styles.infoTextD : styles.infoTextND}>Status: {item.deployed_to ? `Deployed` : 'Not Deployed'}</Text>
             </View>
           </View>
@@ -70,15 +70,15 @@ const styles = StyleSheet.create({
   outkastItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 10,
     padding: 10,
+    marginBottom: 10,
     borderRadius: 10,
-    backgroundColor: NordTheme.container,
   },
   image: {
     width: 80,
     height: 80,
     marginRight: 10,
+    borderRadius: 20
   },
   info: {
     flex: 1,

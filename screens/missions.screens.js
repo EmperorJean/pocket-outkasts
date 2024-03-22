@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { fetchInProgressMissions } from '../tools/outkast.api';
 import { NordTheme } from '../components/theme';
 import { CommonStyles } from '../styles/common.styles';
-
+import { ExpandableText } from '../components/ExpandableText'
 const MissionsScreen = () => {
   const [missions, setMissions] = useState([]);
 
@@ -23,7 +23,12 @@ const MissionsScreen = () => {
           <View key={index} style={styles.missionItem}>
             <Text style={styles.missionName}>{mission.name}</Text>
             <CountdownTimer endTime={mission.end} />
-            <Text style={styles.missionDescription}>{mission.description}</Text>
+            <ExpandableText
+              style={styles.missionDescription}
+              numberOfLines={3} // You can adjust this value to show more/less lines
+            >
+              {mission.description}
+            </ExpandableText>
           </View>
         ))}
       </ScrollView>
@@ -64,12 +69,12 @@ const styles = StyleSheet.create({
     backgroundColor: NordTheme.background,
   },
   missionItem: {
-    marginBottom: 20,
-    marginTop: 20,
+    marginBottom: 10,
+    marginTop: 10,
     padding: 10,
     borderWidth: 1,
     borderColor: NordTheme.container,
-    borderRadius: 5,
+    borderRadius: 10,
     backgroundColor: NordTheme.container,
   },
   missionName: {
@@ -79,14 +84,12 @@ const styles = StyleSheet.create({
   },
   missionDescription: {
     fontSize: 14,
-    marginVertical: 5,
     color: NordTheme.text,
   },
   timer: {
     fontSize: 16,
     fontWeight: 'bold',
     color: NordTheme.highlight,
-    marginVertical: 5,
   },
 });
 
